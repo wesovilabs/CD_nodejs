@@ -6,7 +6,6 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -q -r dotenv/config index.js",
-    "fmt": "js-beautify -r **/*.js",
     "lint": "eslint --ignore-path .gitignore .",
     "test": "jest --detectOpenHandles"
   },
@@ -57,7 +56,6 @@
     "jest": "^24.8.0",
     "js-beautify": "^1.10.1",
     "nodemon": "^1.18.10",
-    "prettier": "1.18.2",
     "supertest": "^4.0.2"
   }
 }

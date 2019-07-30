@@ -1,7 +1,6 @@
 #!/bin/sh
 
-BRANCH_NAME=$(git branch 2>/dev/null | grep -e ^* | tr -d ' *')
-
-if [ "$BRANCH_NAME" != "master" ]; then
-    make
-else
+make docker-lint
+output=$??
+echo ${output}
+exit 0

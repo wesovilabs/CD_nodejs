@@ -6,6 +6,17 @@ volumes:
 
 services:
 
+  code:
+    build:
+      context: ../
+      dockerfile: scripts/Dockerfile
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+    volumes:
+      - ..:/app
+      - app_node_modules:/app/node_modules
+      - /app/testInt
+
   app:
     build:
       context: ../
@@ -22,7 +33,7 @@ services:
     environment:
       PORT: 8080
       MONGO_URL: mongodb://db:27017/quotes
-    entrypoint: npm run start
+    #entrypoint: npm run start
 
   test:
     build:

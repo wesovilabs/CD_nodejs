@@ -1,0 +1,9 @@
+#!/bin/sh
+
+BRANCH_NAME=$(git branch 2>/dev/null | grep -e ^* | tr -d ' *')
+
+make docker-test
+make testIntegration
+if [ "$BRANCH_NAME" != "master" ]; then
+    echo "Hi."
+else
