@@ -1,0 +1,44 @@
+version: "3"
+
+volumes:
+  app_node_modules:
+  test_node_modules:
+
+services:
+
+  app:
+    build:
+      context: ../
+      dockerfile: scripts/Dockerfile
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+    volumes:
+      - ..:/app
+      - app_node_modules:/app/node_modules
+    environment:
+      PORT: 8080
+      MONGO_URL: mongodb://db:27017/quotes
+    entrypoint: npm run start
+
+  test:
+    build:
+      context: ../testInt
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+    depends_on:
+      - app
+    volumes:
+      - ../testInt:/app
+      - test_node_modules:/app/node_modules
+    environment:
+      APP: app:8080
+    command: npm test
+
+  db:
+    image: mongo:3.6
+
+
