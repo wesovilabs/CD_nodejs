@@ -22,11 +22,14 @@ publsih:
 
 testIntegration:
 	docker-compose -f scripts/docker-compose.yml build;
-	docker-compose -f scripts/docker-compose.yml run --name testInt --rm test;
+	docker-compose -f scripts/docker-compose.yml run --name testInt --rm test; \
+	status=$$?;
+	docker-compose -f scripts/docker-compose.yml down -v; \
+	exit $$status;
 
 run:
-	docker-compose -f scripts/docker-compose.yml build; \
-	docker-compose -f scripts/docker-compose.yml run --name app --rm app
+	docker-compose -f scripts/docker-compose.yml build;
+	docker-compose -f scripts/docker-compose.yml run --name app --rm app;
 
 docker-%:
 	docker-compose -f scripts/docker-compose.yml run --entrypoint "make $*" --name code --rm code

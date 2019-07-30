@@ -3,7 +3,7 @@ ARG NODE_VERSION
 FROM node:${NODE_VERSION} as test-deps
 WORKDIR /app
 ADD package.json .
-RUN npm install --quiet;
+RUN npm install;
 
 FROM node:${NODE_VERSION}
 WORKDIR /app
