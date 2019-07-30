@@ -2,5 +2,5 @@
 
 make docker-lint; \
 status=$$?;
-echo $(status)
+echo $status
 exit 0
