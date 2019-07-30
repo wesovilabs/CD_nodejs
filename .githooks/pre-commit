@@ -1,6 +1,3 @@
 #!/bin/sh
 
-make docker-lint; \
-status=$$?;
-echo $status
-exit 0
+make docker-lint
