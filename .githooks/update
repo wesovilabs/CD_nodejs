@@ -1,0 +1,4 @@
+if [ "$BRANCH_NAME" != "master" ]; then
+    make build
+    make publish
+else
